@@ -14,9 +14,6 @@ A machine learning-powered web application built with **Streamlit** to predict w
 - [📊 Model Building](#-model-building)
 - [🌐 Streamlit Web App](#-streamlit-web-app)
 - [📁 Project Structure](#-project-structure)
-- [🎯 Future Enhancements](#-future-enhancements)
-- [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
 
 ---
 
@@ -61,7 +58,27 @@ Categorical variables are encoded using `LabelEncoder`. Feature order is preserv
 💻 Build Web App with Streamlit
 🚀 Launch Locally or Deploy
 
-📊 Model Building
+---
+
+## 🔧 Installation & Setup
+
+1.Clone the repository
+
+git clone https://github.com/yourusername/employee-attrition-app.git
+cd employee-attrition-app
+
+2.Install dependencies
+pip install -r requirements.txt
+
+
+3.🚀 How to Run the App
+streamlit run app.py
+
+Then open your browser to: http://localhost:8501
+
+---
+
+##📊 Model Building
 ✅ Data Preprocessing
 Null/missing value check
 
@@ -73,20 +90,24 @@ Standard feature scaling (optional)
 Using Logistic Regression from scikit-learn:
 
 from sklearn.linear_model import LogisticRegression
-model = LogisticRegression(max_iter=1000)
-model.fit(X_train, y_train)
+lr_model = LogisticRegression()
+lr_model.fit(X_train, y_train)
+
 Saved with:
 
 import pickle
-with open('model.pkl', 'wb') as f:
-    pickle.dump(model, f)
+with open('Attrition_prediction.pkl', 'wb') as f:
+    pickle.dump(lr_model, f)
+
 Also saved:
 
 encoders.pkl: Label encoders dictionary
 
 feature_order.pkl: Ensures correct input ordering in the app
 
-🌐 Streamlit Web App Features
+
+##🌐 Streamlit Web App Features
+
 Sidebar input widgets for employee features
 
 Real-time prediction: "Will Leave" / "Will Stay"
@@ -95,7 +116,11 @@ Simple, clean interface
 
 Input validation and feedback
 
-📁 Project Structure
+---
+
+##📁 Project Structure
+
+employee-attrition-app/
 │
 ├── app.py                  # Streamlit web app
 ├── Employee-Attrition.csv  # Dataset
@@ -105,11 +130,13 @@ Input validation and feedback
 ├── requirements.txt        # Python dependencies
 └── README.md               # You're reading it!
 
-🥇 Credits
+---
+
+##🥇 Credits
 Built by: [Mahendran]
 
 Tools Used: Python, Scikit-learn, Streamlit
-
+---
 
 
 
