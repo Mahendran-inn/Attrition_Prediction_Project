@@ -1,6 +1,6 @@
 # 🧠 Employee Attrition Prediction
 
-A machine learning-powered web app using **Logistic Regression** and **Streamlit** to predict whether an employee is likely to leave the organization (attrition). This app helps HR teams take proactive steps toward improving employee retention.
+A machine learning-powered web using **Logistic Regression** and **Streamlit** to predict whether an employee is likely to leave the organization (attrition). This helps HR teams take proactive steps toward improving employee retention.
 
 ---
 
@@ -32,15 +32,15 @@ Employee attrition can have a major impact on an organization's performance and 
 
 **Example Features:**
 
-| Feature           | Description                          |
-|------------------|--------------------------------------|
-| Age              | Age of the employee                  |
-| MonthlyIncome    | Employee salary                      |
-| JobSatisfaction  | Job satisfaction rating (1 to 4)     |
-| DistanceFromHome | Distance from home to office (km)    |
-| OverTime         | Whether the employee works overtime  |
-| BusinessTravel   | Frequency of business travel         |
-| YearsAtCompany   | Total years spent in the company     |
+| Feature            | Description                          |
+|--------------------|--------------------------------------|
+| Age                | Age of the employee                  |
+| MonthlyIncome      | Employee salary                      |
+| Gender             | Gender selection (male or female)    |
+| MaritalStatus      | MaritalStatus (single or married)    |
+| JobRole            | Employee's job role                  |
+| YearsInCurrentRole | Total years spent in the currentrole |
+| YearsAtCompany     | Total years spent in the company     |
 
 ---
 
