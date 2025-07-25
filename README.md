@@ -134,11 +134,11 @@ etc.......still makes prediction
 
 ## 🛠 Setup Instructions
 
-### 1. Clone the Repository
+### 1. New Repository
 
 ```bash
-git clone https://github.com/yourusername/employee-attrition-app.git
-cd employee-attrition-app
+[git clone https://github.com/yourusername/employee-attrition-app.git
+cd employee-attrition-app](http://github.com/Mahendran-inn/Attrition_Prediction_Project/tree/main)
 ```
 
 ### 2. Install Requirements
