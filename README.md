@@ -1,4 +1,4 @@
-# 🧠 Employee Attrition Prediction
+# 🧠 Employee Attrition & Job Satisfaction Prediction
 
 A machine learning-powered web using **Logistic Regression** and **Streamlit** to predict whether an employee is likely to leave the organization (attrition). This helps HR teams take proactive steps toward improving employee retention.
 
