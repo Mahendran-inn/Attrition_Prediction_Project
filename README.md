@@ -62,45 +62,57 @@ Employee attrition can have a major impact on an organization's performance and 
 
 import pandas as pd
 import pickle
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
-
-# Load the dataset
-df = pd.read_csv('Employee-Attrition - Employee-Attrition.csv')
-
-# Extract target variable
-target = 'Attrition'
-selected_features = [
+# Features & target
+attrition_features = [
     'Age', 'MonthlyIncome', 'Gender', 'MaritalStatus',
-    'JobRole', 'YearsAtCompany', 'YearsInCurrentRole']
+    'JobRole', 'YearsAtCompany', 'YearsInCurrentRole'
+]
+attrition_target = 'Attrition'
 
-#spliting feature and label 
-x = df[selected_features]
-y = df['Attrition'] 
+# Drop NA
+attrition_df = data[attrition_features + [attrition_target]].dropna()
 
-# Encode categorical columns
-encoders = {}
-for column in ['Gender', 'MaritalStatus', 'JobRole']:
-    encoders[column] = LabelEncoder()
-    x[column] = encoders[column].fit_transform(x[column])
+# Encode categorical
+attrition_encoders = {}
+for col in ['Gender', 'MaritalStatus', 'JobRole']:
+    encoder = LabelEncoder()
+    attrition_df[col] = encoder.fit_transform(attrition_df[col])
+    attrition_encoders[col] = encoder
 
-# Split into train and test
-x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+# Split features & labels
+X_attrition = attrition_df[attrition_features]
+y_attrition = attrition_df[attrition_target]
 
-# Train logistic regression model
-lr_model = LogisticRegression()
-lr_model.fit(x_train, y_train)
+from sklearn.model_selection import train_test_split
+# Train-test split
+X_attr_train, X_attr_test, y_attr_train, y_attr_test = train_test_split(
+    X_attrition, y_attrition, test_size=0.2, random_state=1
+)
 
-# Save model, encoders, and feature order
-with open('Attrition_prediction.pkl', 'wb') as f:
-    pickle.dump(lr_model, f)
 
-with open('Attrition_encoder.pkl', 'wb') as f:
-    pickle.dump(encoders, f)
+from sklearn.linear_model import LogisticRegression
+# Model training
+attr_model = LogisticRegression(max_iter=1000)
+attr_model.fit(X_attr_train, y_attr_train)
 
-with open('feature_order.pkl', 'wb') as f:
-    pickle.dump(feature_order, f)
+
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+# Prediction
+y_attr_pred = attr_model.predict(X_attr_test)
+
+# Error Metrics
+print("\nAttrition Prediction Metrics:")
+print("Accuracy:", accuracy_score(y_attr_test, y_attr_pred))
+print("Classification Report:\n", classification_report(y_attr_test, y_attr_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_attr_test, y_attr_pred))
+
+# Save model & encoders
+with open("Attrition_model.pkl", "wb") as f:
+    pickle.dump(attr_model, f)
+
+with open("Attrition_encoder.pkl", "wb") as f:
+    pickle.dump(attrition_encoders, f)
 
 print("✅ Model training complete and files saved!")
 ````
@@ -121,10 +133,9 @@ Attrition_model = pickle.load(open('model.pkl', 'rb'))
 Attrition_encoder = pickle.load(open('encoders.pkl', 'rb'))
 feature_order = pickle.load(open('feature_order.pkl', 'rb'))
 
-st.set_page_config(page_title="Employee Attrition Predictor", page_icon="🧠")
-
-st.title("Employee Attrition Predictor")
-st.markdown("Use this app to predict whether an employee is likely to leave the company.")
+st.set_page_config(page_title="Employee Attrition & Job Satisfaction")
+st.title("Employee Attrition & Job Satisfaction Predictor")
+st.markdown("Use this app to predict **Attrition likelihood** and **Job Satisfaction level** of employees.")
 
 etc.......still makes prediction
 
